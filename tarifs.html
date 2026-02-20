@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarifs - Maîtresse Lana</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Menu Hamburger -->
+    <div class="hamburger" onclick="toggleMenu()">
+        ☰
+    </div>
+
+    <!-- Menu de Navigation -->
+    <nav class="nav-menu" id="navMenu">
+        <div class="nav-header">
+            <h2>MAÎTRESSE LANA</h2>
+            <div class="close-btn" onclick="toggleMenu()">✕</div>
+        </div>
+        <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="apropos.html">À Propos</a></li>
+            <li><a href="reel.html">Réel</a></li>
+            <li><a href="virtuel.html">Virtuel</a></li>
+            <li><a href="tarifs.html" class="active">Tarifs</a></li>
+            <li><a href="galerie.html">Galerie</a></li>
+            <li><a href="reservation.html">Réservation</a></li>
+            <li><a href="avis.html">Avis</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+    <!-- Header de page -->
+    <header class="page-header">
+        <h1>Tarifs</h1>
+        <p>Investissez dans votre soumission</p>
+    </header>
+
+    <!-- Contenu -->
+    <section class="page-content">
+        <div class="container">
+            
+            <div class="pricing-section">
+                <h2>Séances Réelles</h2>
+                <p class="section-description">Séances en présentiel à Meaux (77)</p>
+                
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <h3>Découverte</h3>
+                        <p class="price">200€</p>
+                        <p class="duration">1 heure</p>
+                        <ul>
+                            <li>Pour débutants</li>
+                            <li>Discussion préalable</li>
+                            <li>Pratiques douces</li>
+                            <li>Lieu privé et équipé</li>
+                        </ul>
+                        <a href="reservation.html" class="card-button">Réserver</a>
+                    </div>
+
+                    <div class="pricing-card featured">
+                        <div class="badge">Populaire</div>
+                        <h3>Standard</h3>
+                        <p class="price">300€</p>
+                        <p class="duration">1h30</p>
+                        <ul>
+                            <li>Tous niveaux</li>
+                            <li>Pratiques variées</li>
+                            <li>Matériel complet</li>
+                            <li>Tenue de votre choix</li>
+                        </ul>
+                        <a href="reservation.html" class="card-button">Réserver</a>
+                    </div>
+
+                    <div class="pricing-card">
+                        <h3>Intensive</h3>
+                        <p class="price">450€</p>
+                        <p class="duration">2 heures</p>
+                        <ul>
+                            <li>Soumis expérimentés</li>
+                            <li>Scénarios complexes</li>
+                            <li>Domination intense</li>
+                            <li>Toutes pratiques</li>
+                        </ul>
+                        <a href="reservation.html" class="card-button">Réserver</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pricing-section">
+                <h2>Séances Virtuelles</h2>
+                <p class="section-description">Domination en ligne</p>
+                
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <h3>Visio Courte</h3>
+                        <p class="price">50€</p>
+                        <p class="duration">20 minutes</p>
+                        <ul>
+                            <li>Séance en direct</li>
+                            <li>Domination verbale</li>
+                            <li>Skype ou Telegram</li>
+                        </ul>
+                        <a href="contact.html" class="card-button">Commander</a>
+                    </div>
+
+                    <div class="pricing-card">
+                        <h3>Visio Standard</h3>
+                        <p class="price">100€</p>
+                        <p class="duration">45 minutes</p>
+                        <ul>
+                            <li>Séance approfondie</li>
+                            <li>Instructions précises</li>
+                            <li>Jeux de rôle possibles</li>
+                        </ul>
+                        <a href="contact.html" class="card-button">Commander</a>
+                    </div>
+
+                    <div class="pricing-card">
+                        <h3>Suivi Hebdomadaire</h3>
+                        <p class="price">150€</p>
+                        <p class="duration">7 jours</p>
+                        <ul>
+                            <li>Messages quotidiens</li>
+                            <li>Tâches et défis</li>
+                            <li>Contrôle continu</li>
+                        </ul>
+                        <a href="contact.html" class="card-button">Commander</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-block">
+                <h2>Informations Importantes</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <h3>💳 Paiement</h3>
+                        <p>Espèces, virement ou PayPal. Un acompte de 30% est demandé pour toute réservation de séance réelle.</p>
+                    </div>
+                    <div class="info-item">
+                        <h3>📅 Annulation</h3>
+                        <p>Annulation gratuite jusqu'à 48h avant la séance. Au-delà, l'acompte reste acquis.</p>
+                    </div>
+                    <div class="info-item">
+                        <h3>🔒 Discrétion</h3>
+                        <p>Confidentialité totale garantie. Aucune trace sur le relevé bancaire (libellé neutre).</p>
+                    </div>
+                    <div class="info-item">
+                        <h3>⚠️ Limites</h3>
+                        <p>Certaines pratiques ne sont pas proposées. N'hésitez pas à me contacter pour toute question.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <h2>Des Questions sur les Tarifs ?</h2>
+                <p>Contactez-moi pour un devis personnalisé</p>
+                <a href="contact.html" class="cta-button">ME CONTACTER</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Maîtresse Lana. Tous droits réservés.</p>
+        <p>Contenu réservé aux adultes de plus de 18 ans.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

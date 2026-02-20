@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avis - Maîtresse Lana</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Menu Hamburger -->
+    <div class="hamburger" onclick="toggleMenu()">
+        ☰
+    </div>
+
+    <!-- Menu de Navigation -->
+    <nav class="nav-menu" id="navMenu">
+        <div class="nav-header">
+            <h2>MAÎTRESSE LANA</h2>
+            <div class="close-btn" onclick="toggleMenu()">✕</div>
+        </div>
+        <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="apropos.html">À Propos</a></li>
+            <li><a href="reel.html">Réel</a></li>
+            <li><a href="virtuel.html">Virtuel</a></li>
+            <li><a href="tarifs.html">Tarifs</a></li>
+            <li><a href="galerie.html">Galerie</a></li>
+            <li><a href="reservation.html">Réservation</a></li>
+            <li><a href="avis.html" class="active">Avis</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+    <!-- Header de page -->
+    <header class="page-header">
+        <h1>Votre Avis</h1>
+        <p>Partagez votre expérience</p>
+    </header>
+
+    <!-- Contenu -->
+    <section class="page-content">
+        <div class="container">
+            
+            <div class="content-block">
+                <h2>Donnez Votre Avis</h2>
+                <p>Vous avez vécu une séance avec moi ? Partagez votre expérience en remplissant le formulaire ci-dessous. Votre témoignage est précieux et aide d'autres personnes à franchir le pas.</p>
+                <p>Tous les avis sont les bienvenus, qu'ils soient signés ou anonymes. La sincérité est appréciée.</p>
+            </div>
+
+            <!-- Formulaire d'avis -->
+            <div class="review-form-container">
+                <form class="review-form" id="reviewForm">
+                    
+                    <div class="form-group">
+                        <label for="name">Votre Nom / Pseudo *</label>
+                        <input type="text" id="name" name="name" placeholder="Ex: Marc, Soumis P., ou Anonyme" required>
+                        <span class="form-note">Vous pouvez rester anonyme</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Votre Email *</label>
+                        <input type="email" id="email" name="email" placeholder="votre@email.com" required>
+                        <span class="form-note">Ne sera pas publié publiquement</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="session-type">Type de Séance *</label>
+                        <select id="session-type" name="session-type" required>
+                            <option value="">-- Sélectionnez --</option>
+                            <option value="reel-debutant">Séance réelle - Débutant</option>
+                            <option value="reel-standard">Séance réelle - Standard</option>
+                            <option value="reel-intensive">Séance réelle - Intensive</option>
+                            <option value="virtuel-visio">Séance virtuelle - Visio</option>
+                            <option value="virtuel-messages">Domination par messages</option>
+                            <option value="contenu">Contenu personnalisé</option>
+                            <option value="autre">Autre</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rating">Votre Note *</label>
+                        <div class="star-rating">
+                            <input type="radio" id="star5" name="rating" value="5" required>
+                            <label for="star5">★</label>
+                            <input type="radio" id="star4" name="rating" value="4">
+                            <label for="star4">★</label>
+                            <input type="radio" id="star3" name="rating" value="3">
+                            <label for="star3">★</label>
+                            <input type="radio" id="star2" name="rating" value="2">
+                            <label for="star2">★</label>
+                            <input type="radio" id="star1" name="rating" value="1">
+                            <label for="star1">★</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="review">Votre Témoignage *</label>
+                        <textarea id="review" name="review" rows="8" placeholder="Décrivez votre expérience avec Maîtresse Lana..." required></textarea>
+                        <span class="form-note">Minimum 50 caractères</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="consent" required>
+                            <span>J'accepte que mon témoignage soit publié sur le site *</span>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="anonymous">
+                            <span>Je souhaite rester complètement anonyme (mon nom ne sera pas affiché)</span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="submit-button">ENVOYER MON AVIS</button>
+                    
+                </form>
+
+                <div class="form-success" id="successMessage" style="display: none;">
+                    <div class="success-icon">✓</div>
+                    <h3>Merci pour votre témoignage !</h3>
+                    <p>Votre avis a bien été envoyé. Il sera examiné avant publication.</p>
+                </div>
+            </div>
+
+            <div class="info-block">
+                <h2>Politique de Publication</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <h3>✓ Modération</h3>
+                        <p>Tous les avis sont vérifiés avant publication pour garantir leur authenticité.</p>
+                    </div>
+                    <div class="info-item">
+                        <h3>🔒 Confidentialité</h3>
+                        <p>Votre email ne sera jamais publié ni partagé avec des tiers.</p>
+                    </div>
+                    <div class="info-item">
+                        <h3>👤 Anonymat</h3>
+                        <p>Vous pouvez choisir de rester anonyme, votre vie privée est respectée.</p>
+                    </div>
+                    <div class="info-item">
+                        <h3>💬 Respect</h3>
+                        <p>Les avis injurieux ou irrespectueux ne seront pas publiés.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Maîtresse Lana. Tous droits réservés.</p>
+        <p>Contenu réservé aux adultes de plus de 18 ans.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

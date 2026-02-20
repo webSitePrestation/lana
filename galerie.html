@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Galerie - Maîtresse Lana</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Menu Hamburger -->
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+
+    <!-- Menu de Navigation -->
+    <nav class="nav-menu" id="navMenu">
+      <div class="nav-header">
+        <h2>MAÎTRESSE LANA</h2>
+        <div class="close-btn" onclick="toggleMenu()">✕</div>
+      </div>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="apropos.html">À Propos</a></li>
+        <li><a href="reel.html">Réel</a></li>
+        <li><a href="virtuel.html">Virtuel</a></li>
+        <li><a href="tarifs.html">Tarifs</a></li>
+        <li><a href="galerie.html" class="active">Galerie</a></li>
+        <li><a href="reservation.html">Réservation</a></li>
+        <li><a href="avis.html">Avis</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+    <!-- Header de page -->
+    <header class="page-header">
+      <h1>Galerie</h1>
+      <p>Un aperçu de mon univers</p>
+    </header>
+
+    <!-- Contenu -->
+    <section class="page-content">
+      <div class="container">
+        <div class="content-block">
+          <h2>Découvrez Mon Monde</h2>
+          <p>
+            Voici quelques images qui donnent un aperçu de mon univers de
+            domination, de mon espace et de mon style. Chaque image raconte une
+            histoire de pouvoir, d'élégance et de soumission.
+          </p>
+        </div>
+
+        <!-- Galerie d'images -->
+        <div class="gallery-grid">
+          <div class="gallery-item" onclick="openModal(0)">
+            <img src="images/photo01.jpg" alt="Image 1" />
+            <div class="gallery-overlay">
+              <span>Voir</span>
+            </div>
+          </div>
+          <div class="gallery-item" onclick="openModal(1)">
+            <img src="images/photo02.jpg" alt="Image 2" />
+            <div class="gallery-overlay">
+              <span>Voir</span>
+            </div>
+          </div>
+          <div class="gallery-item" onclick="openModal(2)">
+            <img src="images/photo03.jpg" alt="Image 3" />
+            <div class="gallery-overlay">
+              <span>Voir</span>
+            </div>
+          </div>
+          <div class="gallery-item" onclick="openModal(3)">
+            <img src="images/photo04.jpg" alt="Image 4" />
+            <div class="gallery-overlay">
+              <span>Voir</span>
+            </div>
+          </div>
+          <div class="gallery-item" onclick="openModal(4)">
+            <img src="images/photo05.jpg" alt="Image 5" />
+            <div class="gallery-overlay">
+              <span>Voir</span>
+            </div>
+          </div>
+          <div class="gallery-item" onclick="openModal(5)">
+            <img src="images/photo06.jpg" alt="Image 6" />
+            <div class="gallery-overlay">
+              <span>Voir</span>
+            </div>
+          </div>
+          <div class="gallery-item" onclick="openModal(6)">
+            <img src="images/photo07.jpg" alt="Image 7" />
+            <div class="gallery-overlay">
+              <span>Voir</span>
+            </div>
+          </div>
+          <div class="gallery-item" onclick="openModal(7)">
+            <img src="images/photo08.jpg" alt="Image 8" />
+            <div class="gallery-overlay">
+              <span>Voir</span>
+            </div>
+          </div>
+          <div class="gallery-item" onclick="openModal(8)">
+            <img src="images/photo09.jpg" alt="Image 9" />
+            <div class="gallery-overlay">
+              <span>Voir</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal pour afficher l'image en grand -->
+        <div id="galleryModal" class="modal">
+          <span class="modal-close" onclick="closeModal()">&times;</span>
+          <img class="modal-content" id="modalImage" />
+          <div class="modal-nav">
+            <button class="modal-btn prev" onclick="modalPrevImage()">❮</button>
+            <button class="modal-btn next" onclick="modalNextImage()">❯</button>
+          </div>
+        </div>
+
+        <div class="gallery-note">
+          <p>
+            💎 <strong>Note :</strong> Ces images sont des exemples. Les vraies
+            images de la dominatrice seront ajoutées ultérieurement.
+          </p>
+        </div>
+
+        <div class="cta-section">
+          <h2>Envie d'En Voir Plus ?</h2>
+          <p>Réservez une séance pour découvrir mon univers en personne</p>
+          <a href="reservation.html" class="cta-button">RÉSERVER</a>
+          <a href="contact.html" class="cta-button-secondary">CONTACT</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2024 Maîtresse Lana. Tous droits réservés.</p>
+      <p>Contenu réservé aux adultes de plus de 18 ans.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

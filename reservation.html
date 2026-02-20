@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Réservation - Maîtresse Lana</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* ── Formulaire de réservation ───────────────────────────────── */
+      .reservation-form {
+        background: #111;
+        border: 1px solid #2a2a2a;
+        border-radius: 4px;
+        padding: 40px;
+        margin-top: 40px;
+      }
+
+      .reservation-form h2 {
+        color: #d4af37;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .form-group.full-width {
+        grid-column: 1 / -1;
+      }
+
+      .form-group label {
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: #d4af37;
+      }
+
+      .form-group label .required {
+        color: #8b0000;
+        margin-left: 3px;
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        background: #1a1a1a;
+        border: 1px solid #333;
+        color: #ccc;
+        padding: 12px 15px;
+        font-size: 0.95rem;
+        border-radius: 2px;
+        font-family: inherit;
+        transition: border-color 0.2s;
+      }
+
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: #8b0000;
+      }
+
+      .form-group textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+
+      .form-group select option {
+        background: #1a1a1a;
+      }
+
+      .radio-group {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      .radio-group label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.9rem;
+        text-transform: none;
+        letter-spacing: 0;
+        color: #ccc;
+        cursor: pointer;
+      }
+
+      .radio-group input[type="radio"] {
+        accent-color: #8b0000;
+        width: 16px;
+        height: 16px;
+        padding: 0;
+        border: none;
+      }
+
+      .checkbox-group {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .checkbox-group input[type="checkbox"] {
+        accent-color: #8b0000;
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
+        margin-top: 3px;
+        padding: 0;
+      }
+
+      .checkbox-group label {
+        font-size: 0.85rem;
+        text-transform: none;
+        letter-spacing: 0;
+        color: #888;
+        line-height: 1.5;
+      }
+
+      .form-submit {
+        grid-column: 1 / -1;
+        text-align: center;
+        margin-top: 10px;
+      }
+
+      .form-submit button {
+        background: #8b0000;
+        color: #d4af37;
+        border: none;
+        padding: 15px 50px;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          transform 0.1s;
+        border-radius: 2px;
+      }
+
+      .form-submit button:hover:not(:disabled) {
+        background: #6b0000;
+      }
+
+      .form-submit button:active {
+        transform: scale(0.98);
+      }
+
+      .form-submit button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      .form-notice {
+        background: #1a1200;
+        border-left: 3px solid #d4af37;
+        padding: 12px 16px;
+        font-size: 0.85rem;
+        color: #aaa;
+        margin-bottom: 25px;
+        grid-column: 1 / -1;
+      }
+
+      /* Messages de retour */
+      #form-feedback {
+        display: none;
+        padding: 15px 20px;
+        border-radius: 3px;
+        margin-top: 20px;
+        font-size: 0.9rem;
+        text-align: center;
+      }
+
+      #form-feedback.success {
+        background: #0a2a0a;
+        border: 1px solid #2a6b2a;
+        color: #6bcf6b;
+      }
+
+      #form-feedback.error {
+        background: #2a0a0a;
+        border: 1px solid #6b2a2a;
+        color: #cf6b6b;
+      }
+
+      /* Responsive */
+      @media (max-width: 640px) {
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+        .form-group.full-width {
+          grid-column: 1;
+        }
+        .form-submit {
+          grid-column: 1;
+        }
+        .reservation-form {
+          padding: 25px 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Menu Hamburger -->
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+
+    <!-- Menu de Navigation -->
+    <nav class="nav-menu" id="navMenu">
+      <div class="nav-header">
+        <h2>MAÎTRESSE LANA</h2>
+        <div class="close-btn" onclick="toggleMenu()">✕</div>
+      </div>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="apropos.html">À Propos</a></li>
+        <li><a href="reel.html">Réel</a></li>
+        <li><a href="virtuel.html">Virtuel</a></li>
+        <li><a href="tarifs.html">Tarifs</a></li>
+        <li><a href="galerie.html">Galerie</a></li>
+        <li><a href="reservation.html" class="active">Réservation</a></li>
+        <li><a href="avis.html">Avis</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+    <!-- Header de page -->
+    <header class="page-header">
+      <h1>Réservation</h1>
+      <p>Organisez votre soumission</p>
+    </header>
+
+    <!-- Contenu -->
+    <section class="page-content">
+      <div class="container">
+        <div class="content-block">
+          <h2>Comment Réserver ?</h2>
+          <p>
+            Pour réserver une séance, remplissez le formulaire ci-dessous. Je
+            réponds généralement sous 24 heures pour confirmer les modalités et
+            convenir d'une date.
+          </p>
+        </div>
+
+        <div class="booking-steps">
+          <h2>Processus de Réservation</h2>
+
+          <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h3>Premier Contact</h3>
+              <p>
+                Remplissez le formulaire en précisant le type de séance
+                souhaité, vos disponibilités, vos centres d'intérêt et vos
+                limites, et si vous êtes débutant ou expérimenté.
+              </p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h3>Discussion Préalable</h3>
+              <p>
+                Nous échangeons pour clarifier vos attentes, définir vos limites
+                strictes, choisir la durée et les pratiques, et répondre à vos
+                questions.
+              </p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h3>Confirmation</h3>
+              <p>
+                Une fois d'accord : fixation de la date et de l'heure, envoi des
+                modalités pratiques, versement de l'acompte (30% pour séances
+                réelles) et confirmation définitive.
+              </p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <h3>Jour J</h3>
+              <p>
+                Arrivez à l'heure (ponctualité exigée), apportez le solde en
+                espèces, respectez les consignes données et profitez de votre
+                soumission.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ─── FORMULAIRE DE RÉSERVATION ─────────────────────────────── -->
+        <div class="reservation-form">
+          <h2>Formulaire de Demande</h2>
+
+          <form id="reservationForm" novalidate>
+            <div class="form-grid">
+              <div class="form-notice">
+                Tous les champs marqués d'un
+                <span style="color: #8b0000">*</span> sont obligatoires. Vos
+                informations restent strictement confidentielles.
+              </div>
+
+              <!-- Prénom -->
+              <div class="form-group">
+                <label for="prenom"
+                  >Prénom <span class="required">*</span></label
+                >
+                <input
+                  type="text"
+                  id="prenom"
+                  name="prenom"
+                  placeholder="Votre prénom"
+                  required
+                />
+              </div>
+
+              <!-- Téléphone -->
+              <div class="form-group">
+                <label for="telephone">Téléphone</label>
+                <input
+                  type="tel"
+                  id="telephone"
+                  name="telephone"
+                  placeholder="Optionnel"
+                />
+              </div>
+
+              <!-- Email -->
+              <div class="form-group full-width">
+                <label for="email"
+                  >Adresse email <span class="required">*</span></label
+                >
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="votre@email.com"
+                  required
+                />
+              </div>
+
+              <!-- Type de séance -->
+              <div class="form-group full-width">
+                <label>Type de séance <span class="required">*</span></label>
+                <div class="radio-group">
+                  <label>
+                    <input
+                      type="radio"
+                      name="type_seance"
+                      value="Réel (présentiel)"
+                    />
+                    Réel (présentiel)
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      name="type_seance"
+                      value="Virtuel (en ligne)"
+                    />
+                    Virtuel (en ligne)
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      name="type_seance"
+                      value="Les deux possibles"
+                    />
+                    Les deux possibles
+                  </label>
+                </div>
+              </div>
+
+              <!-- Expérience -->
+              <div class="form-group">
+                <label for="experience"
+                  >Niveau d'expérience <span class="required">*</span></label
+                >
+                <select id="experience" name="experience" required>
+                  <option value="" disabled selected>Choisir…</option>
+                  <option value="Débutant(e) – première fois">
+                    Débutant(e) – première fois
+                  </option>
+                  <option value="Quelques expériences">
+                    Quelques expériences
+                  </option>
+                  <option value="Expérimenté(e)">Expérimenté(e)</option>
+                </select>
+              </div>
+
+              <!-- Disponibilités -->
+              <div class="form-group">
+                <label for="disponibilites"
+                  >Disponibilités <span class="required">*</span></label
+                >
+                <input
+                  type="text"
+                  id="disponibilites"
+                  name="disponibilites"
+                  placeholder="Ex : semaine, soir, week-end…"
+                  required
+                />
+              </div>
+
+              <!-- Pratiques souhaitées -->
+              <div class="form-group full-width">
+                <label for="pratiques"
+                  >Pratiques souhaitées <span class="required">*</span></label
+                >
+                <textarea
+                  id="pratiques"
+                  name="pratiques"
+                  placeholder="Décrivez les pratiques, scénarios ou jeux qui vous intéressent…"
+                  required
+                ></textarea>
+              </div>
+
+              <!-- Limites strictes -->
+              <div class="form-group full-width">
+                <label for="limites">Limites strictes</label>
+                <textarea
+                  id="limites"
+                  name="limites"
+                  placeholder="Ce que vous refusez absolument (hard limits)…"
+                ></textarea>
+              </div>
+
+              <!-- Message complémentaire -->
+              <div class="form-group full-width">
+                <label for="message">Informations complémentaires</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  placeholder="Questions, précisions, contexte particulier…"
+                ></textarea>
+              </div>
+
+              <!-- RGPD -->
+              <div class="form-group full-width">
+                <div class="checkbox-group">
+                  <input type="checkbox" id="rgpd" name="rgpd" required />
+                  <label for="rgpd">
+                    J'accepte que mes informations soient utilisées uniquement
+                    dans le cadre de cette demande de réservation et restent
+                    strictement confidentielles. <span class="required">*</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Bouton -->
+              <div class="form-submit">
+                <button type="submit" id="submitBtn">Envoyer ma demande</button>
+              </div>
+            </div>
+            <!-- /.form-grid -->
+          </form>
+
+          <div id="form-feedback"></div>
+        </div>
+        <!-- ─── FIN FORMULAIRE ──────────────────────────────────────────── -->
+
+        <div class="info-block">
+          <h2>Informations Pratiques</h2>
+          <div class="info-grid">
+            <div class="info-item">
+              <h3>📍 Localisation</h3>
+              <p>
+                Meaux (77) – Adresse exacte communiquée après confirmation de
+                réservation
+              </p>
+            </div>
+            <div class="info-item">
+              <h3>🕐 Horaires</h3>
+              <p>Du lundi au samedi, de 10h à 22h. Dimanche sur demande.</p>
+            </div>
+            <div class="info-item">
+              <h3>🚗 Accès</h3>
+              <p>Parking privé disponible. Gare de Meaux à 10 minutes.</p>
+            </div>
+            <div class="info-item">
+              <h3>💳 Paiement</h3>
+              <p>Acompte : virement ou PayPal. Solde : espèces le jour J.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="rules-block">
+          <h2>Règles Importantes</h2>
+          <div class="rules-list">
+            <div class="rule">
+              <span class="rule-icon">✔</span>
+              <p>
+                <strong>Hygiène irréprochable</strong> – Douche obligatoire
+                avant la séance
+              </p>
+            </div>
+            <div class="rule">
+              <span class="rule-icon">✔</span>
+              <p>
+                <strong>Respect absolu</strong> – Respect des limites mutuelles
+                et du consentement
+              </p>
+            </div>
+            <div class="rule">
+              <span class="rule-icon">✔</span>
+              <p>
+                <strong>Ponctualité</strong> – Tout retard entraîne une
+                réduction du temps de séance
+              </p>
+            </div>
+            <div class="rule">
+              <span class="rule-icon">✔</span>
+              <p>
+                <strong>Discrétion</strong> – Confidentialité totale garantie
+                des deux côtés
+              </p>
+            </div>
+            <div class="rule">
+              <span class="rule-icon">✗</span>
+              <p>
+                <strong>Pas de sexe</strong> – Aucune relation sexuelle, aucun
+                contact génital
+              </p>
+            </div>
+            <div class="rule">
+              <span class="rule-icon">✗</span>
+              <p>
+                <strong>Pas de photos/vidéos</strong> – Interdiction formelle
+                sans accord préalable
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="cancellation-policy">
+          <h2>Politique d'Annulation</h2>
+          <ul>
+            <li>
+              Annulation <strong>plus de 48h avant</strong> : acompte remboursé
+              ou report possible
+            </li>
+            <li>
+              Annulation <strong>entre 48h et 24h</strong> : 50% de l'acompte
+              conservé
+            </li>
+            <li>
+              Annulation <strong>moins de 24h avant</strong> : acompte
+              intégralement conservé
+            </li>
+            <li>
+              <strong>Absence sans prévenir</strong> : blacklist automatique
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2024 Maîtresse Lana. Tous droits réservés.</p>
+      <p>Contenu réservé aux adultes de plus de 18 ans.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+      document
+        .getElementById("reservationForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          const form = e.target;
+          const btn = document.getElementById("submitBtn");
+          const feedback = document.getElementById("form-feedback");
+
+          // Vérification type de séance (radios)
+          const typeSeance = form.querySelector(
+            'input[name="type_seance"]:checked',
+          );
+          if (!typeSeance) {
+            showFeedback("Veuillez choisir un type de séance.", false);
+            return;
+          }
+
+          btn.disabled = true;
+          btn.textContent = "Envoi en cours…";
+          feedback.style.display = "none";
+
+          const formData = new FormData(form);
+
+          try {
+            const response = await fetch("send-reservation.php", {
+              method: "POST",
+              body: formData,
+            });
+
+            const result = await response.json();
+            showFeedback(result.message, result.success);
+
+            if (result.success) {
+              form.reset();
+            }
+          } catch (err) {
+            showFeedback(
+              "Une erreur réseau est survenue. Veuillez réessayer.",
+              false,
+            );
+          } finally {
+            btn.disabled = false;
+            btn.textContent = "Envoyer ma demande";
+          }
+        });
+
+      function showFeedback(message, success) {
+        const feedback = document.getElementById("form-feedback");
+        feedback.className = success ? "success" : "error";
+        feedback.textContent = message;
+        feedback.style.display = "block";
+        feedback.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
+    </script>
+  </body>
+</html>
